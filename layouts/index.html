@@ -7,36 +7,72 @@
     <title>Soya & Koala</title>
     <style>
       /* https://css-tricks.com/perfect-full-page-background-image/ */
-      html {
-        background-image: url("/images/bavoiranimaux.2.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        transition: background-image 1s ease-in-out;
+      img.bg {
+        /* Set rules to fill background */
+        min-height: 100%;
+        min-width: 1024px;
+
+        /* Set up proportionate scaling */
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+
+        /* Set up positioning */
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        transition: opacity 0.4s ease-in;
+        -webkit-transition: opacity 0.4s ease-in;
+        -moz-transition: opacity 0.4s ease-in;
+        -ms-transition: opacity 0.4s ease-in;
+        -o-transition: opacity 0.4s ease-in;
+      }
+      img.hidden {
+        opacity: 0;
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <img
+      class="bg"
+      src="/images/bavoiranimaux.2.jpg"
+      alt="Bavoir jaune avec animaux"
+    />
+    <img
+      class="bg hidden"
+      src="/images/couverturemaxime10.jpg"
+      alt="Couverture avec broderie personallisée"
+    />
+    <img
+      class="bg hidden"
+      src="/images/jouetcraquant2.jpg"
+      alt="Jouet craquant"
+    />
+    <img
+      class="bg hidden"
+      src="/images/mobileolive2.jpg"
+      alt="Mobile couleur olive"
+    />
+  </body>
   <script>
-    const images = [
-      "/images/bavoiranimaux.2.jpg",
-      "/images/couverturemaxime10.jpg",
-      "/images/jouetcraquant2.jpg",
-      "/images/mobileolive2.jpg",
-    ];
-    function changeImage(imageUrl) {
-      document.documentElement.style["background-image"] = `url("${imageUrl}")`;
+    const allImageNodes = document.getElementsByClassName("bg");
+    function changeImage(visiblePos) {
+      for (let index = 0; index < allImageNodes.length; index++) {
+        console.log(visiblePos);
+        if (index === pos) {
+          allImageNodes[index].classList.remove("hidden");
+        } else {
+          allImageNodes[index].classList.add("hidden");
+        }
+      }
     }
     let pos = 0;
     function start() {
       // https://stackoverflow.com/questions/44227997/creating-in-an-infinite-loop-using-settimeout
       setTimeout(function () {
-        pos = pos >= images.length - 1 ? 0 : pos + 1;
-        changeImage(images[pos]);
+        pos = pos >= allImageNodes.length - 1 ? 0 : pos + 1;
+        changeImage(pos);
         // Again
         start();
 
