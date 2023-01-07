@@ -6,6 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Soya & Koala</title>
     <style>
+      :root {
+        --clr-accent: #b4ada6;
+        --clr-accent-hover: #6e6a65;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      ol[class],
+      ul[class] li,
+      figure,
+      figcaption,
+      blockquote,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      main {
+        position: relative;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        resize: both;
+        overflow: auto;
+      }
+
+      main div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: white;
+        border-radius: 5px;
+        color: white;
+        width: 500px;
+        padding: 10px;
+        overflow: auto;
+      }
+
+      .subscription {
+        display: flex;
+        width: 100%;
+      }
+
+      .subscription .add-email {
+        flex-grow: 4;
+        margin-right: 10px;
+        padding: 20px 30px;
+        border-radius: 3px;
+        border: 1px solid #8f94a1;
+      }
+      .subscription .add-email:focus {
+        outline: 1px solid var(--clr-accent);
+      }
+
+      .subscription .submit {
+        border: none;
+        outline: none;
+        background: transparent;
+        background-color: var(--clr-accent);
+        padding: 20px 30px;
+        color: white;
+        border-radius: 3px;
+        border: 1px solid var(--clr-accent);
+        cursor: pointer;
+      }
+      .subscription .submit:hover {
+        border-color: var(--clr-accent-hover);
+      }
+
+      /* Rotating background images */
       /* https://css-tricks.com/perfect-full-page-background-image/ */
       img.bg {
         /* Set rules to fill background */
@@ -31,6 +110,7 @@
       img.hidden {
         opacity: 0;
       }
+      /* Rotating background images end */
     </style>
   </head>
   <body>
@@ -41,19 +121,35 @@
     />
     <img
       class="bg hidden"
+      loading="lazy"
       src="/images/couverturemaxime10.jpg"
       alt="Couverture avec broderie personallisée"
     />
     <img
       class="bg hidden"
+      loading="lazy"
       src="/images/jouetcraquant2.jpg"
       alt="Jouet craquant"
     />
     <img
       class="bg hidden"
+      loading="lazy"
       src="/images/mobileolive2.jpg"
       alt="Mobile couleur olive"
     />
+    <main>
+      <div>
+        <form class="subscription">
+          <input
+            class="add-email"
+            type="email"
+            name="email"
+            placeholder="Votre adresse courriel"
+          />
+          <input class="submit" type="submit" value="Soumettre" />
+        </form>
+      </div>
+    </main>
   </body>
   <script>
     const allImageNodes = document.getElementsByClassName("bg");
