@@ -9,6 +9,7 @@
       :root {
         --clr-accent: #b4ada6;
         --clr-accent-hover: #6e6a65;
+        --clr-accent-text: #383735;
       }
 
       body,
@@ -41,21 +42,29 @@
         overflow: auto;
       }
 
-      main div {
+      main div.subscription-popup {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
         background: white;
         border-radius: 5px;
-        color: white;
+        gap: 10px;
         width: 500px;
         padding: 10px;
         overflow: auto;
+        color: var(--clr-accent-text);
+      }
+
+      .subscription-popup img {
+        width: 100%;
+        height: auto;
       }
 
       .subscription {
-        display: flex;
         width: 100%;
+        display: flex;
+        flex-direction: row;
       }
 
       .subscription .add-email {
@@ -138,7 +147,9 @@
       alt="Mobile couleur olive"
     />
     <main>
-      <div>
+      <div class="subscription-popup">
+        <img src="/images/mobilemilana3.jpg" />
+        <h3>Bientot</h3>
         <form class="subscription">
           <input
             class="add-email"
@@ -155,7 +166,6 @@
     const allImageNodes = document.getElementsByClassName("bg");
     function changeImage(visiblePos) {
       for (let index = 0; index < allImageNodes.length; index++) {
-        console.log(visiblePos);
         if (index === pos) {
           allImageNodes[index].classList.remove("hidden");
         } else {
