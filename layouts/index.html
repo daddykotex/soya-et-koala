@@ -10,6 +10,7 @@
         --clr-accent: #b4ada6;
         --clr-accent-hover: #6e6a65;
         --clr-accent-text: #383735;
+        --width-subscription-popup: 500px;
       }
 
       body,
@@ -47,10 +48,10 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        background: white;
+        background-color: rgba(255, 255, 255, 0.4);
         border-radius: 5px;
         gap: 10px;
-        width: 500px;
+        width: var(--width-subscription-popup);
         padding: 10px;
         overflow: auto;
         color: var(--clr-accent-text);
@@ -110,13 +111,26 @@
         top: 0;
         left: 0;
 
-        transition: opacity 0.4s ease-in;
-        -webkit-transition: opacity 0.4s ease-in;
-        -moz-transition: opacity 0.4s ease-in;
-        -ms-transition: opacity 0.4s ease-in;
-        -o-transition: opacity 0.4s ease-in;
+        transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -webkit-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -moz-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -ms-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -o-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+      }
+
+      img.bg-small {
+        width: var(--width-subscription-popup);
+        object-fit: cover;
+
+        transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -webkit-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -moz-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -ms-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        -o-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
       }
       img.hidden {
+        visibility: hidden;
+        position: absolute;
         opacity: 0;
       }
       /* Rotating background images end */
@@ -131,8 +145,8 @@
     <img
       class="bg hidden"
       loading="lazy"
-      src="/images/couverturemaxime10.jpg"
-      alt="Couverture avec broderie personallisée"
+      src="/images/mobilefloral2.jpg"
+      alt="Couverture mobile avec fleur"
     />
     <img
       class="bg hidden"
@@ -148,7 +162,12 @@
     />
     <main>
       <div class="subscription-popup">
-        <img src="/images/mobilemilana3.jpg" />
+        <div clas="popup-image">
+          <img class="bg-small" src="/images/bavoiranimaux-petit.jpg" />
+          <img class="bg-small hidden" src="/images/mobilefloral4-petit.jpg" />
+          <img class="bg-small hidden" src="/images/jouetcraquant3-petit.jpg" />
+          <img class="bg-small hidden" src="/images/mobileolive1-petit.jpg" />
+        </div>
         <h3>Bientot</h3>
         <form class="subscription">
           <input
@@ -163,13 +182,14 @@
     </main>
   </body>
   <script>
-    const allImageNodes = document.getElementsByClassName("bg");
-    function changeImage(visiblePos) {
-      for (let index = 0; index < allImageNodes.length; index++) {
+    const largeImages = document.getElementsByClassName("bg");
+    const smallImages = document.getElementsByClassName("bg-small");
+    function changeImage(images, visiblePos) {
+      for (let index = 0; index < images.length; index++) {
         if (index === pos) {
-          allImageNodes[index].classList.remove("hidden");
+          images[index].classList.remove("hidden");
         } else {
-          allImageNodes[index].classList.add("hidden");
+          images[index].classList.add("hidden");
         }
       }
     }
@@ -177,8 +197,10 @@
     function start() {
       // https://stackoverflow.com/questions/44227997/creating-in-an-infinite-loop-using-settimeout
       setTimeout(function () {
-        pos = pos >= allImageNodes.length - 1 ? 0 : pos + 1;
-        changeImage(pos);
+        const max = Math.max(largeImages.length, smallImages.length);
+        pos = pos >= largeImages.length - 1 ? 0 : pos + 1;
+        changeImage(largeImages, pos);
+        changeImage(smallImages, pos);
         // Again
         start();
 
