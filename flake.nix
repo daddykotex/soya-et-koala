@@ -9,7 +9,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = [ pkgs.hugo ];
+          packages = [ pkgs.hugo pkgs.yarn ];
         };
       });
 }
