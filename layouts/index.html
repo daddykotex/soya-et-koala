@@ -185,10 +185,10 @@
     const largeImages = document.getElementsByClassName("bg");
     const smallImages = document.getElementsByClassName("bg-small");
     function changeImage(images, visiblePos) {
+      images[visiblePos].classList.remove("hidden");
+
       for (let index = 0; index < images.length; index++) {
-        if (index === pos) {
-          images[index].classList.remove("hidden");
-        } else {
+        if (index !== visiblePos) {
           images[index].classList.add("hidden");
         }
       }
