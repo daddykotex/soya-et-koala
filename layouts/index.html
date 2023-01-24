@@ -1,1 +1,335 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Soya & Koala</title>
+    <style>
+      @font-face {
+        font-family: Nugo;
+        src: url("/fonts/nugo-sans.ttf");
+      }
+      :root {
+        --clr-accent: #b4ada6;
+        --clr-accent-hover: #6e6a65;
+        --clr-accent-text: #383735;
+        --width-subscription-popup: 350px;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      ol[class],
+      ul[class] li,
+      figure,
+      figcaption,
+      blockquote,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      .subscription-popup {
+        position: absolute;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding: 10px;
+
+        height: 500px;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto 0;
+
+        width: var(--width-subscription-popup);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+
+        background-color: rgba(255, 255, 255);
+        color: var(--clr-accent-text);
+      }
+
+      .subscription-popup img.product {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .subscription {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        box-sizing: border-box;
+        padding: 10px;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      }
+
+      .subscription-popup h3 {
+        font-family: Nugo;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: column;
+      }
+      .subscription-popup img.logo.logo.horizontal {
+        width: 300px;
+        margin-bottom: 10px;
+      }
+      .subscription-popup img.logo.logo.vertical {
+        height: 100px;
+        margin-bottom: 10px;
+      }
+
+      .logo.vertical {
+        display: none;
+      }
+      .logo.horizontal {
+        display: block;
+        margin-left: 25px;
+      }
+
+      .subscription img.product {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .subscription form {
+        position: relative;
+        display: flex;
+        gap: 25px;
+        flex-direction: column;
+      }
+
+      .subscription p {
+        color: white;
+      }
+      .subscription p.terms-and-conditions {
+        font-size: 12px;
+      }
+
+      .subscription-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100%;
+        width: 100%;
+      }
+
+      .subscription .email,
+      .subscription .nom {
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #8f94a1;
+      }
+      .subscription .email:focus,
+      .subscription .nom:focus {
+        outline: 1px solid var(--clr-accent);
+      }
+
+      .subscription .submit {
+        border: none;
+        outline: none;
+        background: transparent;
+        background-color: var(--clr-accent);
+        padding: 20px 30px;
+        color: white;
+        border-radius: 3px;
+        border: 1px solid var(--clr-accent);
+        cursor: pointer;
+      }
+      .subscription .submit:hover {
+        border-color: var(--clr-accent-hover);
+      }
+
+      /* Rotating background images */
+      /* https://css-tricks.com/perfect-full-page-background-image/ */
+      .bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* Fading animation */
+      .fade {
+        animation-name: fade;
+        animation-duration: 0.5s;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .full-bg {
+        z-index: -1;
+        min-height: 100%;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+
+        /* Set up positioning */
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      @media (max-width: 800px) {
+        main {
+          display: flex;
+          flex-direction: column;
+        }
+        .full-bg {
+          position: static;
+          height: auto;
+        }
+        .subscription-popup {
+          position: static;
+          width: 100%;
+          border-radius: 0;
+          border-bottom-left-radius: 0;
+          padding: 0;
+          height: auto;
+        }
+        .header {
+          display: flex;
+          flex-direction: row;
+        }
+        .header h3 {
+          margin-top: 5%;
+        }
+        .logo.vertical {
+          display: block;
+        }
+        .logo.horizontal {
+          display: none;
+        }
+        .bg {
+          width: 100%;
+          height: auto;
+
+          transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+          -webkit-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+          -moz-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+          -ms-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+          -o-transition: opacity 0.4s ease-in, visibility 0.4s ease-in;
+        }
+      }
+      /* Rotating background images end */
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="full-bg">
+        <img
+          class="fade bg"
+          src="/images/bavoiranimaux.jpg"
+          alt="Bavoir jaune avec animaux"
+        />
+        <img
+          class="fade bg hidden"
+          src="/images/bavoirelementsauge.jpg"
+          alt="Bavoir sauge avec éléments"
+        />
+        <img
+          class="fade bg hidden"
+          src="/images/couverturemaxime.jpg"
+          alt="Couverture avec broderie personnalisée"
+        />
+        <img
+          class="fade bg hidden"
+          src="/images/jouetcraquant.jpg"
+          alt="Jouet craquant avec herisson"
+        />
+        <img
+          class="fade bg hidden"
+          src="/images/mobileolive.jpg"
+          alt="Mobile olive vue 1"
+        />
+        <img
+          class="fade bg hidden"
+          src="/images/mobileolive-loin.jpg"
+          alt="Mobile olive vue de loin"
+        />
+      </div>
+      <div class="subscription-popup">
+        <div class="header">
+          <img class="logo vertical" src="/images/logos/logo_vertical.png" />
+          <h3>Ouverture de notre boutique en ligne prochainement</h3>
+          <img
+            class="logo horizontal"
+            src="/images/logos/logo_horizontal.png"
+          />
+        </div>
+        <div class="subscription">
+          <img class="product" src="/images/baleine.jpg" />
+          <div class="subscription-hover"></div>
+          <form>
+            <p>Obtenez 15% de rabais lors de votre premier achat!*</p>
+            <input class="nom" type="text" name="nom" placeholder="Prénom" />
+            <input
+              class="email"
+              type="email"
+              name="email"
+              placeholder="Votre adresse courriel"
+            />
+            <input class="submit" type="submit" value="Je profite de -15%!" />
+            <p class="terms-and-conditions">
+              En vous inscrivant à notre infolettre, vous acceptez de recevoir
+              des courriels de notre part.
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const largeImages = document.getElementsByClassName("bg");
+    function changeImage(images, visiblePos) {
+      images[visiblePos].classList.remove("hidden");
+
+      for (let index = 0; index < images.length; index++) {
+        if (index !== visiblePos) {
+          images[index].classList.add("hidden");
+        }
+      }
+    }
+    let pos = 0;
+    function start() {
+      // https://stackoverflow.com/questions/44227997/creating-in-an-infinite-loop-using-settimeout
+      setTimeout(function () {
+        pos = pos >= largeImages.length - 1 ? 0 : pos + 1;
+        changeImage(largeImages, pos);
+        // Again
+        start();
+
+        // Every 3 sec
+      }, 3000);
+    }
+
+    // Begins
+    start();
+  </script>
+</html>
