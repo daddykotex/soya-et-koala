@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Merci</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      @font-face {
+        font-family: Nugo;
+        src: url("/fonts/nugo-sans.ttf");
+      }
+      .flex-container {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .row {
+        width: auto;
+        text-align: center;
+      }
+      h1 {
+        font-family: Nugo;
+      }
+      img.logo.vertical {
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="row">
+        <img class="logo vertical" src="/images/logos/logo_vertical.png" />
+        <h1>{{ .Content }}</h1>
+      </div>
+    </div>
+  </body>
+</html>

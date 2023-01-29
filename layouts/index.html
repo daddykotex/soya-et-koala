@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -286,7 +286,12 @@
         <div class="subscription">
           <img class="product" src="/images/baleine.jpg" />
           <div class="subscription-hover"></div>
-          <form>
+          <form
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            action="/pages/merci"
+          >
             <p>Obtenez 15% de rabais lors de votre premier achat!*</p>
             <input class="nom" type="text" name="nom" placeholder="Prénom" />
             <input
