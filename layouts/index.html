@@ -157,31 +157,47 @@
         border-color: var(--clr-accent-hover);
       }
 
-      /* Rotating background images */
-      /* https://css-tricks.com/perfect-full-page-background-image/ */
-      .bg {
+      .slide > img {
+        animation: slide 21s infinite;
+        opacity: 0;
+        position: absolute;
+
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      /* Fading animation */
-      .fade {
-        animation-name: fade;
-        animation-duration: 1s;
+      .slide > img:nth-child(2) {
+        position: relative;
+        animation-delay: 3s;
+      }
+      .slide > img:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .slide > img:nth-child(4) {
+        animation-delay: 9s;
+      }
+      .slide > img:nth-child(5) {
+        animation-delay: 12s;
+      }
+      .slide > img:nth-child(6) {
+        animation-delay: 15s;
+      }
+      .slide > img:nth-child(7) {
+        animation-delay: 18s;
       }
 
-      @keyframes fade {
-        from {
-          opacity: 0;
-        }
-        to {
+      @keyframes slide {
+        10% {
           opacity: 1;
         }
+        30% {
+          opacity: 0;
+        }
       }
-
-      .hidden {
-        display: none;
-      }
+      /* end fading */
 
       .full-bg {
         z-index: -1;
@@ -189,11 +205,6 @@
         width: 100%;
         height: 100vh;
         object-fit: cover;
-
-        /* Set up positioning */
-        position: fixed;
-        top: 0;
-        left: 0;
       }
 
       @media (max-width: 800px) {
@@ -226,7 +237,7 @@
         .logo.horizontal {
           display: none;
         }
-        .bg {
+        .slide > img {
           width: 100%;
           height: auto;
         }
@@ -236,30 +247,14 @@
   </head>
   <body>
     <main>
-      <div class="full-bg">
-        <img class="fade bg" src="/images/1.jpg" alt="Mobile suspendu" />
-        <img
-          class="fade bg hidden"
-          src="/images/2.jpg"
-          alt="Jouet de dentition"
-        />
-        <img class="fade bg hidden" src="/images/3.jpg" alt="Couverte" />
-        <img
-          class="fade bg hidden"
-          src="/images/4.jpg"
-          alt="Bavoir et jouet de dentition"
-        />
-        <img
-          class="fade bg hidden"
-          src="/images/5.jpg"
-          alt="Couverte personallisée"
-        />
-        <img class="fade bg hidden" src="/images/6.jpg" alt="Mobile" />
-        <img
-          class="fade bg hidden"
-          src="/images/7.jpg"
-          alt="Jouet de dentition croquant"
-        />
+      <div class="full-bg slide">
+        <img src="/images/1.jpg" alt="Mobile suspendu" />
+        <img src="/images/2.jpg" alt="Jouet de dentition" />
+        <img src="/images/3.jpg" alt="Couverte" />
+        <img src="/images/4.jpg" alt="Bavoir et jouet de dentition" />
+        <img src="/images/5.jpg" alt="Couverte personallisée" />
+        <img src="/images/6.jpg" alt="Mobile" />
+        <img src="/images/7.jpg" alt="Jouet de dentition croquant" />
       </div>
       <div class="subscription-popup">
         <div class="header">
@@ -307,28 +302,28 @@
     </main>
   </body>
   <script>
-    const largeImages = document.getElementsByClassName("bg");
-    function changeImage(images, visiblePos) {
-      images[visiblePos].classList.remove("hidden");
+    // const largeImages = document.getElementsByClassName("bg");
+    // function changeImage(images, visiblePos) {
+    //   images[visiblePos].classList.remove("hidden");
 
-      for (let index = 0; index < images.length; index++) {
-        if (index !== visiblePos) {
-          images[index].classList.add("hidden");
-        }
-      }
-    }
-    let pos = 0;
-    function start() {
-      // https://stackoverflow.com/questions/44227997/creating-in-an-infinite-loop-using-settimeout
-      setTimeout(function () {
-        pos = pos >= largeImages.length - 1 ? 0 : pos + 1;
-        changeImage(largeImages, pos);
-        // Again
-        start();
-      }, 4000);
-    }
+    //   for (let index = 0; index < images.length; index++) {
+    //     if (index !== visiblePos) {
+    //       images[index].classList.add("hidden");
+    //     }
+    //   }
+    // }
+    // let pos = 0;
+    // function start() {
+    //   // https://stackoverflow.com/questions/44227997/creating-in-an-infinite-loop-using-settimeout
+    //   setTimeout(function () {
+    //     pos = pos >= largeImages.length - 1 ? 0 : pos + 1;
+    //     changeImage(largeImages, pos);
+    //     // Again
+    //     start();
+    //   }, 4000);
+    // }
 
-    // Begins
-    start();
+    // // Begins
+    // start();
   </script>
 </html>
