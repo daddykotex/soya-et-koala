@@ -11,11 +11,10 @@
         src: url("/fonts/nugo-sans.ttf");
       }
       :root {
-        --clr-accent: #c2afa4;
-        --clr-accent-hover: #6e6a65;
-        --clr-accent-text: #383735;
-        --store-button-text: #222222;
-        --width-subscription-popup: 350px;
+        --bg-color-subscription-popup: #dad0c7;
+        --width-subscription-popup: 460px;
+        --width-subscription-popup-gap: 25px;
+        --width-subscription-form-gap: 15px;
       }
 
       body,
@@ -36,84 +35,52 @@
         margin: 0;
       }
 
+      body {
+        font-family: Nugo;
+        background-color: var(--bg-color-subscription-popup);
+      }
+
+      main {
+        display: flex;
+        flex-direction: row;
+      }
+
       .subscription-popup {
         font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-        position: absolute;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        padding: 10px;
-
-        height: 525px;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        margin: auto 0;
-
         width: var(--width-subscription-popup);
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        text-align: center;
-
-        background-color: rgba(255, 255, 255);
-        color: var(--clr-accent-text);
-      }
-
-      .subscription-popup img.product {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-      }
-
-      .subscription {
-        position: relative;
-        width: 100%;
-        height: 300px;
-        box-sizing: border-box;
+        background-color: var(--bg-color-subscription-popup);
         padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .subscription-popup h3 {
-        font-family: Nugo;
-      }
-
-      .header {
+      .subscription-content {
         display: flex;
         flex-direction: column;
+        gap: var(--width-subscription-popup-gap);
+        text-align: center;
       }
+      .header {
+        text-align: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--width-subscription-popup-gap);
+      }
+
       .subscription-popup img.logo.logo.horizontal {
-        width: 300px;
-        margin: 10px 0;
-      }
-      .subscription-popup img.logo.logo.vertical {
-        height: 100px;
-        margin-bottom: 10px;
-      }
-
-      .logo.vertical {
-        display: none;
-      }
-      .logo.horizontal {
-        display: block;
-        margin-left: 25px;
-      }
-
-      .subscription img.product {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
+        width: 200px;
       }
 
       .subscription form {
-        position: relative;
+        background-color: #82817f;
         display: flex;
-        gap: 25px;
+        gap: var(--width-subscription-form-gap);
         flex-direction: column;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
       }
 
       .subscription p {
@@ -121,15 +88,6 @@
       }
       .subscription p.terms-and-conditions {
         font-size: 12px;
-      }
-
-      .subscription-hover {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        height: 100%;
-        width: 100%;
       }
 
       .subscription .email,
@@ -144,15 +102,17 @@
       }
 
       .subscription .submit {
+        text-decoration: none;
         outline: none;
         background: transparent;
-        background-color: var(--clr-accent);
-        padding: 20px 30px;
-        color: white;
-        border-radius: 3px;
-        border: 1px solid var(--clr-accent);
+        padding: 15px 30px;
+        background-color: #efecea;
         cursor: pointer;
-        font-weight: bold;
+        font-size: 1.4em;
+        color: #000;
+        text-decoration: none;
+        border-radius: 5px;
+        border: 3px solid #efecea;
       }
       .subscription .submit:hover {
         border-color: var(--clr-accent-hover);
@@ -162,15 +122,14 @@
         text-decoration: none;
         outline: none;
         background: transparent;
-        padding: 20px 30px;
-        background-color: var(--clr-accent);
+        padding: 15px 30px;
+        background-color: #efecea;
         cursor: pointer;
-        font-weight: bold;
-        font-size: 1.5em;
-        color: #fff;
+        font-size: 1.4em;
+        color: #000;
         text-decoration: none;
-        border-radius: 3px;
-        border: 3px solid var(--clr-accent);
+        border-radius: 5px;
+        border: 3px solid #efecea;
       }
 
       .slide > img {
@@ -178,15 +137,13 @@
         opacity: 0;
         position: absolute;
 
-        position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
+        width: calc(100% - var(--width-subscription-popup));
         height: 100%;
         object-fit: cover;
       }
       .slide > img:nth-child(2) {
-        position: relative;
         animation-delay: 3s;
       }
       .slide > img:nth-child(3) {
@@ -221,47 +178,27 @@
       .full-bg {
         z-index: -1;
         min-height: 100%;
-        width: 100%;
+        width: calc(100% - var(--width-subscription-popup));
         height: 100vh;
         object-fit: cover;
       }
 
       @media (max-width: 800px) {
         main {
-          display: flex;
-          flex-direction: column;
-        }
-        .full-bg {
-          position: static;
-          height: auto;
-        }
-        .subscription-popup {
-          position: static;
-          width: 100%;
-          border-radius: 0;
-          border-bottom-left-radius: 0;
-          padding: 0;
-          height: auto;
-        }
-        .header {
-          display: flex;
-          flex-direction: row;
-        }
-        .header h3 {
-          margin-top: 5%;
-        }
-        .logo.vertical {
           display: block;
         }
-        .logo.horizontal {
-          display: none;
+        .full-bg {
+          height: auto;
+          width: 100%;
+        }
+        .subscription-popup {
+          width: 100%;
+          position: absolute;
+          bottom: 0;
         }
         a.store {
-          padding: 0;
           font-size: 1.3em;
           padding: 10px;
-          margin-top: 25px;
-          margin-left: 25px;
           height: 25px;
         }
         .slide > img {
@@ -285,57 +222,50 @@
         <img src="/images/8.jpg" alt="Porte clé" />
       </div>
       <div class="subscription-popup">
-        <div class="header">
-          <img
-            class="logo vertical"
-            src="/images/logos/logo_vertical.png"
-            alt="Logo Soya et Koala vertical"
-          />
-          <a
-            alt="Lien vers boutique en ligne Soya et Koala"
-            href="https://soyaetkoala.etsy.com/"
-            class="store"
-          >
-            Magasinez en ligne!
-          </a>
-          <img
-            class="logo horizontal"
-            src="/images/logos/logo_horizontal.png"
-            alt="Logo Soya et Koala horizontal"
-          />
-        </div>
-        <div class="subscription">
-          <img
-            class="product"
-            src="/images/baleine.jpg"
-            alt="Mobile avec baleine en bois"
-          />
-          <div class="subscription-hover"></div>
-          <form
-            name="newsletter"
-            method="POST"
-            data-netlify="true"
-            action="/pages/merci"
-          >
-            <p>Obtenez 15% de rabais lors de votre premier achat!*</p>
-            <input
-              class="nom"
-              type="text"
-              name="nom"
-              placeholder="Nom complet"
+        <div class="subscription-content">
+          <div class="header">
+            <img
+              class="logo horizontal"
+              src="/images/logos/logo_horizontal.png"
+              alt="Logo Soya et Koala horizontal"
             />
-            <input
-              class="email"
-              type="email"
-              name="email"
-              placeholder="Votre adresse courriel"
-            />
-            <input class="submit" type="submit" value="Je profite de -15%!" />
-            <p class="terms-and-conditions">
-              * En vous inscrivant à notre infolettre, vous acceptez de recevoir
-              des courriels de notre part.
-            </p>
-          </form>
+            <div style="margin-top: 10px">
+              <a
+                alt="Lien vers boutique en ligne Soya et Koala"
+                href="https://soyaetkoala.etsy.com/"
+                class="store"
+              >
+                Visitez notre boutique Etsy ici
+              </a>
+            </div>
+          </div>
+          <div class="subscription">
+            <form
+              name="newsletter"
+              method="POST"
+              data-netlify="true"
+              action="/pages/merci"
+            >
+              <p>Obtenez 15% de rabais en vous abonnant à l'infolettre!*</p>
+              <input
+                class="nom"
+                type="text"
+                name="nom"
+                placeholder="Nom complet"
+              />
+              <input
+                class="email"
+                type="email"
+                name="email"
+                placeholder="Votre adresse courriel"
+              />
+              <input class="submit" type="submit" value="Je profite de -15%!" />
+              <p class="terms-and-conditions">
+                * En vous inscrivant à notre infolettre, vous acceptez de
+                recevoir des courriels de notre part.
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </main>
