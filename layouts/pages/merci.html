@@ -6,28 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Merci</title>
     <style>
-      html,
-      body {
-        height: 100%;
-      }
       @font-face {
         font-family: Nugo;
         src: url("/fonts/nugo-sans.ttf");
       }
-      .flex-container {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .row {
-        width: auto;
+      body {
+        background-color: #d9d0c8;
         text-align: center;
-      }
-      h1 {
         font-family: Nugo;
+      }
+      .content {
+        /* https://stackoverflow.com/questions/356809/best-way-to-center-a-div-on-a-page-vertically-and-horizontally */
+        height: 500px;
+        
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        
+        margin: auto;
+      }
+      .content p {
+        font-size: 1.2em;
+      }
+      .cta {
+        margin-top: 40px;
+      }
+      .cta > a {
+        text-decoration: none;
+        outline: none;
+        background: transparent;
+        padding: 15px 30px;
+        background-color: #efecea;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.4em;
+        color: #000;
+        text-decoration: none;
+        border-radius: 20px;
+        border: 3px solid #efecea;
       }
       img.logo.vertical {
         height: 300px;
@@ -35,10 +53,13 @@
     </style>
   </head>
   <body>
-    <div class="flex-container">
-      <div class="row">
+    <div class="content">
         <img class="logo vertical" src="/images/logos/logo_vertical.png" />
-        <h1>{{ .Content }}</h1>
+
+        {{ .Content }}
+
+        <div class="cta">
+          <a href="{{ index .Params "cta-link" }}" alt="{{ index .Params "cta-alt" }}">{{ index .Params "cta-text" }}</a>
       </div>
     </div>
   </body>
