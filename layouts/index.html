@@ -50,7 +50,6 @@
         width: var(--width-subscription-popup);
 
         background-color: var(--bg-color-subscription-popup);
-        padding: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -61,6 +60,7 @@
         flex-direction: column;
         gap: var(--width-subscription-popup-gap);
         text-align: center;
+        margin: 0 10px;
       }
       .header {
         text-align: center;
@@ -185,16 +185,14 @@
 
       @media (max-width: 800px) {
         main {
-          display: block;
+          flex-direction: column;
         }
         .full-bg {
-          height: auto;
+          height: calc(100vh - 400px);
           width: 100%;
         }
         .subscription-popup {
           width: 100%;
-          position: absolute;
-          bottom: 0;
         }
         a.store {
           font-size: 1.3em;
@@ -203,7 +201,6 @@
         }
         .slide > img {
           width: 100%;
-          height: auto;
         }
       }
       /* Rotating background images end */
